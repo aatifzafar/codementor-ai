@@ -55,14 +55,14 @@ export function AppSidebar() {
                 return (
                   <SidebarMenuItem key={item.href}>
                     <SidebarMenuButton
-                      asChild
                       isActive={active}
                       tooltip={item.title}
+                      render={
+                        <Link href={item.href} onClick={() => setOpenMobile(false)} />
+                      }
                     >
-                      <Link href={item.href} onClick={() => setOpenMobile(false)}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </Link>
+                      <item.icon />
+                      <span>{item.title}</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 )

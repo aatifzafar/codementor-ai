@@ -107,7 +107,7 @@ export default function MistakesPage() {
               </div>
 
               <div className="flex justify-end">
-                <Button size="sm" variant="outline" render={<Link href="/tutor" />}>
+                <Button size="sm" variant="outline" nativeButton={false} render={<Link href="/tutor" />}>
                   Review with tutor
                   <ArrowRight data-icon="inline-end" />
                 </Button>
