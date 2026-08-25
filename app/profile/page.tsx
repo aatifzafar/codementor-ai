@@ -49,7 +49,7 @@ import { user, streak, overallProgress } from '@/lib/mock-data'
 import { cn } from '@/lib/utils'
 
 const experienceLevels = ['Beginner', 'Intermediate', 'Advanced']
-const languages = ['Python', 'JavaScript', 'TypeScript', 'Java', 'C++', 'Go']
+const languages = ['C++20 (GCC 13.2)', 'C++23 (Latest)', 'C++17 (Modern)', 'C++14 (Classic)']
 
 export default function ProfilePage() {
   const [dailyTarget, setDailyTarget] = useState(user.dailyTargetMinutes)

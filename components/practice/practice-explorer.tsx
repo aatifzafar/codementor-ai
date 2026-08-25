@@ -34,6 +34,7 @@ export function PracticeExplorer() {
   }, [query, difficulty])
 
   const recommended = filtered.filter((p) => p.recommended)
+  const selectedProblem = filtered[0] ?? null
 
   return (
     <div className="flex flex-col gap-5">
@@ -80,13 +81,18 @@ export function PracticeExplorer() {
                     </Badge>
                   </div>
                   <div className="flex-1">
-                    <p className="font-medium">{p.title}</p>
+                    <div className="flex items-center gap-2">
+                      <Badge variant="secondary" className="font-mono text-xs font-semibold px-1.5 py-0.5 border border-border">
+                        #{p.conceptNumber}
+                      </Badge>
+                      <p className="font-medium">{p.title}</p>
+                    </div>
                     <p className="mt-1 text-xs text-muted-foreground line-clamp-2 text-pretty">
                       {p.description}
                     </p>
                   </div>
-                  <Button size="sm" className="w-full" render={<Link href="/tutor" />}>
-                    Solve with tutor
+                  <Button size="sm" className="w-full" render={<Link href={`/tutor?problem=${p.id}`} />}>
+                    Run & Solve with tutor
                     <ArrowRight data-icon="inline-end" />
                   </Button>
                 </CardContent>
@@ -125,6 +131,9 @@ export function PracticeExplorer() {
                 <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center">
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
+                      <Badge variant="secondary" className="font-mono text-xs font-semibold px-2 py-0.5 border border-border">
+                        #{p.conceptNumber}
+                      </Badge>
                       <span className="font-medium">{p.title}</span>
                       {p.recommended && (
                         <Badge variant="secondary" className="gap-1 text-primary">
@@ -137,6 +146,9 @@ export function PracticeExplorer() {
                       {p.description}
                     </p>
                     <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <Badge variant="outline" className="text-emerald-500 border-emerald-500/30 bg-emerald-500/5 font-mono text-[11px]">
+                        C++
+                      </Badge>
                       {p.tags.map((t) => (
                         <Badge key={t} variant="outline" className="text-muted-foreground">
                           {t}
@@ -152,10 +164,12 @@ export function PracticeExplorer() {
                         {p.acceptance}%
                       </span>
                     </div>
-                    <Button size="sm" variant="ghost" render={<Link href="/tutor" />}>
-                      Solve
-                      <ArrowRight data-icon="inline-end" />
-                    </Button>
+                    <div className="flex items-center gap-2">
+                      <Button size="sm" variant="outline" render={<Link href={`/tutor?problem=${p.id}`} />}>
+                        Run & Solve
+                        <ArrowRight data-icon="inline-end" />
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
